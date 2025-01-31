@@ -18,13 +18,13 @@ public class MemberRestController {
         memberService = theMemberService;
     }
 
-    // expose "/employees" and return a list of employees
+    // expose "/members" and return a list of members
     @GetMapping("/members")
     public List<Member> findAll() {
         return memberService.findAll();
     }
 
-    // add mapping for GET /employees/{memberId}
+    // add mapping for GET /members/{memberId}
 
     @GetMapping("/members/{memberId}")
     public Member getMember(@PathVariable int memberId) {
@@ -38,13 +38,10 @@ public class MemberRestController {
         return theMember;
     }
 
-    // add mapping for POST /employees - add new employee
+    // add mapping for POST /members - add new member
 
     @PostMapping("/members")
     public Member addMember(@RequestBody Member theMember) {
-
-        // also just in case they pass an id in JSON ... set id to 0
-        // this is to force a save of new item ... instead of update
 
         theMember.setId(0);
 
@@ -53,7 +50,7 @@ public class MemberRestController {
         return dbMember;
     }
 
-    // add mapping for PUT /employees - update existing employee
+    // add mapping for PUT /members - update existing members
 
     @PutMapping("/members")
     public Member updateEmployee(@RequestBody Member theMember) {
@@ -63,7 +60,7 @@ public class MemberRestController {
         return dbMember;
     }
 
-    // add mapping for DELETE /employees/{memberId} - delete employee
+    // add mapping for DELETE /members/{memberId} - delete member
 
     @DeleteMapping("/members/{memberId}")
     public String deleteEmployee(@PathVariable int memberId) {
